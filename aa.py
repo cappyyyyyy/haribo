@@ -163,7 +163,7 @@ def load_data_from_github():
     all_users = {}
     
     # GitHub raw URL'leri
-      github_files = [
+    github_files = [
         "https://raw.githubusercontent.com/cappyyyyyy/vahset/main/data_part1.txt",
         "https://raw.githubusercontent.com/cappyyyyyy/vahset/main/data_part2.txt", 
         "https://raw.githubusercontent.com/cappyyyyyy/vahset/main/data_part3.txt",
