@@ -20,7 +20,7 @@ import hashlib
 app = Flask(__name__)
 
 # Render için güvenli ayarlar
-app.secret_key = os.environ.get('SECRET_KEY', 'haribo_render_2025_sweet_key')
+app.secret_key = os.environ.get('SECRET_KEY', 'dark_haribo_2025_terminal_key')
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['PERMANENT_SESSION_LIFETIME'] = 1800
 
@@ -41,45 +41,44 @@ GITHUB_USERNAME = os.environ.get('GITHUB_USERNAME', 'cappyyyyyy')
 GITHUB_REPO = os.environ.get('GITHUB_REPO', 'vahset')
 GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN', '')
 
-class CandyStyle:
-    """Haribo şeker teması sabitler"""
+class DarkHariboStyle:
+    """Dark terminal teması sabitler"""
     COLORS = {
-        'red': '#FF6B8B',        # Pembe şeker
-        'orange': '#FF9966',     # Turuncu şeker
-        'yellow': '#FFD166',     # Sarı şeker
-        'green': '#9EE493',      # Yeşil şeker
-        'blue': '#6CA6FF',       # Mavi şeker
-        'purple': '#C8A2C8',     # Leylak şeker
-        'pink': '#FFB6C1',       # Açık pembe
-        'cyan': '#76E6FF',       # Camgöbeği
-        'white': '#FFFFFF',
-        'dark': '#2D1B69',       # Koyu mor
-        'light': '#FFE5EC',      # Açık pembe arkaplan
-        'gold': '#FFD700',       # Altın
-        'candy_red': '#FF3366',  # Şeker kırmızısı
-        'candy_green': '#66FF99',# Şeker yeşili
-        'candy_blue': '#3366FF', # Şeker mavisi
-        'candy_purple': '#CC66FF'# Şeker moru
+        'terminal_black': '#0a0a0a',
+        'terminal_dark': '#121212',
+        'terminal_gray': '#1a1a1a',
+        'terminal_light_gray': '#2a2a2a',
+        'terminal_green': '#00ff00',
+        'terminal_cyan': '#00ffff',
+        'terminal_blue': '#0088ff',
+        'terminal_purple': '#aa00ff',
+        'terminal_red': '#ff3333',
+        'terminal_yellow': '#ffff00',
+        'terminal_orange': '#ff8800',
+        'terminal_white': '#ffffff',
+        'terminal_magenta': '#ff00ff',
+        'haribo_green': '#00cc66',
+        'haribo_yellow': '#ffcc00',
+        'haribo_red': '#ff3366',
+        'haribo_orange': '#ff9966'
     }
     
     GRADIENTS = {
-        'rainbow': 'linear-gradient(90deg, #FF3366 0%, #FF9966 25%, #FFD166 50%, #9EE493 75%, #6CA6FF 100%)',
-        'candy': 'linear-gradient(135deg, #FF6B8B 0%, #FF9966 25%, #FFD166 50%, #9EE493 75%, #6CA6FF 100%)',
-        'sweet': 'linear-gradient(135deg, #FFE5EC 0%, #FFB6C1 50%, #FF6B8B 100%)',
-        'gummy': 'linear-gradient(90deg, #FF3366 0%, #CC66FF 100%)',
-        'golden': 'linear-gradient(90deg, #FFD700 0%, #FF9966 100%)',
-        'berry': 'linear-gradient(90deg, #FF3366 0%, #C8A2C8 100%)',
-        'button': 'linear-gradient(90deg, #FF6B8B 0%, #FF3366 100%)',
-        'success': 'linear-gradient(90deg, #9EE493 0%, #66FF99 100%)',
-        'warning': 'linear-gradient(90deg, #FFD166 0%, #FF9966 100%)',
-        'danger': 'linear-gradient(90deg, #FF3366 0%, #FF0066 100%)'
+        'terminal_dark': 'linear-gradient(135deg, #0a0a0a 0%, #121212 50%, #1a1a1a 100%)',
+        'terminal_glow': 'linear-gradient(90deg, #00ff00 0%, #00ffff 100%)',
+        'terminal_blue': 'linear-gradient(90deg, #0088ff 0%, #00aaff 100%)',
+        'terminal_purple': 'linear-gradient(90deg, #aa00ff 0%, #cc66ff 100%)',
+        'haribo_green': 'linear-gradient(90deg, #00cc66 0%, #00ff88 100%)',
+        'haribo_gold': 'linear-gradient(90deg, #ffcc00 0%, #ff9900 100%)',
+        'haribo_red': 'linear-gradient(90deg, #ff3366 0%, #ff0066 100%)',
+        'haribo_rainbow': 'linear-gradient(90deg, #ff3366 0%, #ff9966 25%, #ffcc00 50%, #00cc66 75%, #0088ff 100%)'
     }
     
     @staticmethod
-    def get_candy_emoji():
-        """Rastgele şeker emojisi"""
-        candies = ['🍭', '🍬', '🍫', '🍡', '🍧', '🍨', '🍦', '🎂', '🧁', '🍰', '🍩', '🍪', '🥨', '🍮']
-        return random.choice(candies)
+    def get_haribo_emoji():
+        """Rastgele Haribo emojisi"""
+        emojis = ['🍬', '🍭', '🍫', '🧁', '🍩', '🍪', '🥨', '🍰', '🎂', '🍦', '🍧', '🍨']
+        return random.choice(emojis)
 
 def parse_line_data(line):
     """Bir satır veriyi parse et"""
@@ -157,7 +156,7 @@ def load_data_from_github():
     global users_data
     
     print("=" * 70)
-    print("🍭 HARIBO SWEET OSINT v3.0 - GITHUB DATA LOADER")
+    print("🍬 DARK HARIBO OSINT v3.0 - GITHUB DATA LOADER")
     print("=" * 70)
     
     all_users = {}
@@ -692,7 +691,7 @@ def perform_email_osint(email):
 # Verileri uygulama başladığında yükle
 with app.app_context():
     print("\n" + "="*80)
-    print("🍭 HARIBO SWEET OSINT v3.0")
+    print("🍬 DARK HARIBO OSINT v3.0")
     print("="*80)
     print("📦 GitHub'dan veriler yükleniyor...")
     users_data = load_data_from_github()
@@ -711,7 +710,7 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if session.get('authenticated'):
-        return redirect('/candy_shop')
+        return redirect('/terminal')
     
     error = None
     if request.method == 'POST':
@@ -719,12 +718,12 @@ def login():
         if entered_key == CORRECT_KEY:
             session['authenticated'] = True
             session.permanent = True
-            return jsonify({'success': True, 'redirect': '/candy_shop'})
+            return jsonify({'success': True, 'redirect': '/terminal'})
         else:
             error = "⚠️ Invalid access key!"
     
-    colors = CandyStyle.COLORS
-    gradients = CandyStyle.GRADIENTS
+    colors = DarkHariboStyle.COLORS
+    gradients = DarkHariboStyle.GRADIENTS
     
     return render_template_string('''
     <!DOCTYPE html>
@@ -732,26 +731,28 @@ def login():
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>HARIBO SWEET OSINT | CANDY SHOP ACCESS</title>
+        <title>DARK HARIBO OSINT | TERMINAL ACCESS</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
         <style>
             :root {
-                --candy-red: {{ colors.red }};
-                --candy-orange: {{ colors.orange }};
-                --candy-yellow: {{ colors.yellow }};
-                --candy-green: {{ colors.green }};
-                --candy-blue: {{ colors.blue }};
-                --candy-purple: {{ colors.purple }};
-                --candy-pink: {{ colors.pink }};
-                --candy-cyan: {{ colors.cyan }};
-                --candy-gold: {{ colors.gold }};
-                --bg-light: {{ colors.light }};
-                --bg-dark: {{ colors.dark }};
-                --text-dark: #5A2D81;
-                --gradient-rainbow: {{ gradients.rainbow }};
-                --gradient-sweet: {{ gradients.sweet }};
-                --gradient-gummy: {{ gradients.gummy }};
+                --terminal-black: {{ colors.terminal_black }};
+                --terminal-dark: {{ colors.terminal_dark }};
+                --terminal-gray: {{ colors.terminal_gray }};
+                --terminal-light-gray: {{ colors.terminal_light_gray }};
+                --haribo-green: {{ colors.haribo_green }};
+                --haribo-yellow: {{ colors.haribo_yellow }};
+                --haribo-red: {{ colors.haribo_red }};
+                --haribo-orange: {{ colors.haribo_orange }};
+                --terminal-green: {{ colors.terminal_green }};
+                --terminal-cyan: {{ colors.terminal_cyan }};
+                --terminal-blue: {{ colors.terminal_blue }};
+                --terminal-purple: {{ colors.terminal_purple }};
+                --gradient-dark: {{ gradients.terminal_dark }};
+                --gradient-glow: {{ gradients.terminal_glow }};
+                --gradient-haribo: {{ gradients.haribo_green }};
+                --gradient-gold: {{ gradients.haribo_gold }};
+                --gradient-rainbow: {{ gradients.haribo_rainbow }};
             }
             
             * {
@@ -761,44 +762,38 @@ def login():
             }
             
             body {
-                font-family: 'Poppins', sans-serif;
-                background: var(--gradient-sweet);
+                font-family: 'JetBrains Mono', monospace;
+                background: var(--terminal-black);
+                color: var(--terminal-green);
                 min-height: 100vh;
                 overflow: hidden;
             }
             
-            .candy-background {
+            .matrix-grid {
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                z-index: -2;
                 background: 
-                    radial-gradient(circle at 20% 80%, rgba(255, 107, 139, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(255, 209, 102, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 40% 40%, rgba(158, 228, 147, 0.3) 0%, transparent 50%);
+                    linear-gradient(rgba(0, 204, 102, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0, 204, 102, 0.03) 1px, transparent 1px);
+                background-size: 20px 20px;
+                z-index: -2;
+                opacity: 0.3;
             }
             
-            .floating-candies {
-                position: absolute;
+            .terminal-background {
+                position: fixed;
+                top: 0;
+                left: 0;
                 width: 100%;
                 height: 100%;
+                background: var(--gradient-dark);
+                z-index: -1;
             }
             
-            .candy {
-                position: absolute;
-                font-size: 24px;
-                animation: float 15s infinite ease-in-out;
-                opacity: 0.7;
-            }
-            
-            @keyframes float {
-                0%, 100% { transform: translateY(0) rotate(0deg); }
-                50% { transform: translateY(-20px) rotate(10deg); }
-            }
-            
-            .candy-shop-container {
+            .terminal-container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -806,87 +801,64 @@ def login():
                 padding: 20px;
             }
             
-            .candy-store {
-                background: rgba(255, 255, 255, 0.95);
-                border-radius: 25px;
+            .terminal-window {
+                background: rgba(10, 10, 10, 0.95);
+                border: 2px solid var(--haribo-green);
+                border-radius: 0;
                 width: 100%;
-                max-width: 500px;
+                max-width: 600px;
                 box-shadow: 
-                    0 20px 60px rgba(255, 107, 139, 0.3),
-                    0 10px 30px rgba(255, 209, 102, 0.3),
-                    0 5px 15px rgba(158, 228, 147, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-                border: 3px solid var(--candy-pink);
+                    0 0 40px rgba(0, 204, 102, 0.5),
+                    0 0 0 1px rgba(0, 255, 0, 0.1),
+                    inset 0 0 20px rgba(0, 0, 0, 0.8);
                 overflow: hidden;
-                position: relative;
+                font-family: 'Ubuntu Mono', monospace;
             }
             
-            .candy-store::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 10px;
-                background: var(--gradient-rainbow);
-                z-index: 1;
-            }
-            
-            .store-header {
-                background: var(--gradient-gummy);
-                padding: 25px 30px;
-                text-align: center;
-                border-bottom: 3px dotted var(--candy-pink);
-            }
-            
-            .store-title {
-                font-family: 'Nunito', sans-serif;
-                font-size: 2.5em;
-                font-weight: 900;
-                margin-bottom: 10px;
-                background: var(--gradient-rainbow);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
-            }
-            
-            .store-subtitle {
-                color: var(--text-dark);
-                font-size: 1.1em;
-                font-weight: 500;
+            .terminal-header {
+                background: rgba(26, 26, 26, 0.9);
+                padding: 15px 20px;
+                border-bottom: 2px solid var(--haribo-green);
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
-                justify-content: center;
-                gap: 10px;
             }
             
-            .store-content {
+            .terminal-title {
+                font-size: 1.5em;
+                font-weight: 700;
+                color: var(--haribo-green);
+                letter-spacing: 1px;
+                text-shadow: 0 0 10px rgba(0, 204, 102, 0.5);
+            }
+            
+            .terminal-subtitle {
+                color: var(--haribo-yellow);
+                font-size: 0.9em;
+                opacity: 0.8;
+            }
+            
+            .terminal-content {
                 padding: 40px;
             }
             
-            .candy-machine {
-                text-align: center;
+            .boot-sequence {
                 margin-bottom: 30px;
             }
             
-            .machine-icon {
-                font-size: 4em;
-                color: var(--candy-red);
-                margin-bottom: 20px;
-                animation: candyPop 2s infinite;
+            .boot-line {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+                font-size: 0.95em;
+                color: var(--terminal-cyan);
             }
             
-            @keyframes candyPop {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.1); }
-            }
-            
-            .welcome-text {
-                color: var(--text-dark);
-                font-size: 1.2em;
-                margin-bottom: 30px;
-                line-height: 1.6;
+            .boot-line::before {
+                content: '>';
+                color: var(--haribo-green);
+                font-weight: bold;
             }
             
             .login-form {
@@ -895,196 +867,179 @@ def login():
                 gap: 25px;
             }
             
-            .candy-input-group {
+            .input-group {
                 position: relative;
             }
             
-            .candy-input {
-                background: rgba(255, 255, 255, 0.9);
-                border: 3px solid var(--candy-blue);
-                border-radius: 15px;
-                color: var(--text-dark);
-                font-family: 'Poppins', sans-serif;
-                padding: 18px 20px;
+            .terminal-input {
+                background: rgba(0, 0, 0, 0.7);
+                border: 2px solid var(--terminal-blue);
+                border-radius: 0;
+                color: var(--terminal-green);
+                font-family: 'Ubuntu Mono', monospace;
+                padding: 15px 20px;
                 width: 100%;
                 font-size: 16px;
+                letter-spacing: 2px;
                 transition: all 0.3s ease;
-                box-shadow: 0 5px 15px rgba(108, 166, 255, 0.2);
             }
             
-            .candy-input:focus {
+            .terminal-input:focus {
                 outline: none;
-                border-color: var(--candy-red);
-                box-shadow: 0 5px 20px rgba(255, 107, 139, 0.3);
-                transform: translateY(-2px);
+                border-color: var(--haribo-green);
+                box-shadow: 0 0 20px rgba(0, 204, 102, 0.3);
+                background: rgba(0, 0, 0, 0.9);
             }
             
             .input-label {
                 position: absolute;
-                left: 15px;
+                left: 12px;
                 top: -12px;
-                background: white;
-                padding: 0 10px;
-                color: var(--candy-red);
-                font-weight: 600;
-                font-size: 0.9em;
-                z-index: 1;
+                background: var(--terminal-black);
+                padding: 0 8px;
+                color: var(--haribo-yellow);
+                font-size: 0.8em;
+                letter-spacing: 1px;
             }
             
-            .candy-button {
-                background: var(--gradient-gummy);
-                border: none;
-                border-radius: 15px;
-                color: white;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 800;
-                padding: 20px;
-                font-size: 18px;
+            .terminal-button {
+                background: var(--gradient-haribo);
+                border: 2px solid var(--haribo-green);
+                border-radius: 0;
+                color: #000;
+                font-family: 'JetBrains Mono', monospace;
+                font-weight: 700;
+                padding: 18px;
+                font-size: 16px;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 15px;
-                letter-spacing: 1px;
+                letter-spacing: 2px;
                 text-transform: uppercase;
-                box-shadow: 0 10px 20px rgba(204, 102, 255, 0.3);
                 position: relative;
                 overflow: hidden;
             }
             
-            .candy-button::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-                transition: 0.5s;
+            .terminal-button:hover {
+                background: var(--gradient-gold);
+                border-color: var(--haribo-yellow);
+                box-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
             }
             
-            .candy-button:hover::before {
-                left: 100%;
+            .terminal-button:active {
+                transform: translateY(2px);
             }
             
-            .candy-button:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 15px 30px rgba(204, 102, 255, 0.4);
-            }
-            
-            .candy-button:active {
-                transform: translateY(0);
-            }
-            
-            .error-candy {
-                background: rgba(255, 107, 139, 0.1);
-                border: 2px solid var(--candy-red);
-                border-radius: 15px;
+            .error-box {
+                background: rgba(255, 51, 102, 0.1);
+                border: 2px solid var(--haribo-red);
                 padding: 15px;
-                color: var(--candy-red);
-                font-size: 0.95em;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                animation: shake 0.5s;
-            }
-            
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-5px); }
-                75% { transform: translateX(5px); }
-            }
-            
-            .candy-footer {
-                margin-top: 30px;
-                text-align: center;
-                color: var(--text-dark);
+                color: var(--haribo-red);
                 font-size: 0.9em;
-                padding-top: 20px;
-                border-top: 2px dotted var(--candy-pink);
-            }
-            
-            .version {
                 display: flex;
                 align-items: center;
-                justify-content: center;
                 gap: 10px;
-                margin-top: 10px;
+                animation: terminalError 0.5s;
+            }
+            
+            @keyframes terminalError {
+                0%, 100% { border-color: var(--haribo-red); }
+                50% { border-color: var(--haribo-orange); }
+            }
+            
+            .terminal-footer {
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(0, 204, 102, 0.3);
+                color: var(--terminal-cyan);
+                font-size: 0.8em;
+                text-align: center;
+            }
+            
+            .haribo-emoji {
+                font-size: 1.2em;
+                animation: hariboGlow 2s infinite alternate;
+            }
+            
+            @keyframes hariboGlow {
+                from { text-shadow: 0 0 5px var(--haribo-green); }
+                to { text-shadow: 0 0 20px var(--haribo-green); }
+            }
+            
+            .blink {
+                animation: blink 1s infinite;
+            }
+            
+            @keyframes blink {
+                0%, 50% { opacity: 1; }
+                51%, 100% { opacity: 0; }
             }
             
             @media (max-width: 600px) {
-                .candy-store {
+                .terminal-window {
                     margin: 10px;
                 }
                 
-                .store-content {
+                .terminal-content {
                     padding: 30px 20px;
-                }
-                
-                .store-title {
-                    font-size: 2em;
                 }
             }
         </style>
     </head>
     <body>
-        <div class="candy-background">
-            <div class="floating-candies" id="candyContainer"></div>
-        </div>
+        <div class="matrix-grid"></div>
+        <div class="terminal-background"></div>
         
-        <div class="candy-shop-container">
-            <div class="candy-store">
-                <div class="store-header">
-                    <h1 class="store-title">HARIBO SWEET OSINT</h1>
-                    <div class="store-subtitle">
-                        <i class="fas fa-candy-cane"></i>
-                        Candy Intelligence Platform
-                        <i class="fas fa-lollipop"></i>
+        <div class="terminal-container">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-title">
+                        DARK HARIBO OSINT v3.0
+                    </div>
+                    <div class="terminal-subtitle">
+                        <span class="haribo-emoji">🍬</span> TERMINAL EDITION
                     </div>
                 </div>
                 
-                <div class="store-content">
-                    <div class="candy-machine">
-                        <div class="machine-icon">
-                            <i class="fas fa-candy-cane"></i>
-                        </div>
-                        <div class="welcome-text">
-                            Welcome to the Sweet Intelligence Factory! 
-                            Enter your golden key to unlock the candy OSINT machine.
-                        </div>
+                <div class="terminal-content">
+                    <div class="boot-sequence">
+                        <div class="boot-line">SYSTEM INITIALIZED</div>
+                        <div class="boot-line">OSINT MODULES LOADED</div>
+                        <div class="boot-line">DATABASE CONNECTION ESTABLISHED</div>
+                        <div class="boot-line">AWAITING USER AUTHENTICATION<span class="blink">_</span></div>
                     </div>
                     
                     <form id="loginForm" method="POST" class="login-form">
-                        <div class="candy-input-group">
-                            <div class="input-label">GOLDEN CANDY KEY</div>
+                        <div class="input-group">
+                            <div class="input-label">ACCESS KEY REQUIRED</div>
                             <input type="password" 
                                    name="access_key" 
-                                   class="candy-input"
-                                   placeholder="🍬 Enter your sweet key 🍬"
+                                   class="terminal-input"
+                                   placeholder="ENTER KEY"
                                    required
                                    autofocus>
                         </div>
                         
-                        <button type="submit" class="candy-button">
-                            <i class="fas fa-key"></i>
-                            Unlock Candy Machine
+                        <button type="submit" class="terminal-button">
+                            <i class="fas fa-terminal"></i>
+                            BOOT TERMINAL
                         </button>
                         
                         {% if error %}
-                        <div class="error-candy">
+                        <div class="error-box">
                             <i class="fas fa-exclamation-triangle"></i>
                             {{ error }}
                         </div>
                         {% endif %}
                     </form>
                     
-                    <div class="candy-footer">
-                        <div>Powered by Sweet Intelligence • GitHub Data Source</div>
-                        <div class="version">
-                            <i class="fas fa-ice-cream"></i>
-                            <span>v3.0 • Candy Edition</span>
-                            <i class="fas fa-cookie-bite"></i>
+                    <div class="terminal-footer">
+                        <div>HARIBO INTELLIGENCE SUITE • GITHUB DATASOURCE</div>
+                        <div style="margin-top: 10px;">
+                            <span class="haribo-emoji">🍫</span> ENCRYPTED TERMINAL <span class="haribo-emoji">🍭</span>
                         </div>
                     </div>
                 </div>
@@ -1092,56 +1047,36 @@ def login():
         </div>
         
         <script>
-            // Create floating candies
-            const candyContainer = document.getElementById('candyContainer');
-            const candyEmojis = ['🍭', '🍬', '🍫', '🍡', '🍧', '🍨', '🍦', '🎂', '🧁', '🍰', '🍩', '🍪', '🥨', '🍮', '🍒', '🍓', '🍇', '🍊', '🍋'];
-            
-            for (let i = 0; i < 25; i++) {
-                const candy = document.createElement('div');
-                candy.className = 'candy';
-                candy.textContent = candyEmojis[Math.floor(Math.random() * candyEmojis.length)];
-                candy.style.left = `${Math.random() * 100}%`;
-                candy.style.top = `${Math.random() * 100}%`;
-                candy.style.animationDelay = `${Math.random() * 15}s`;
-                candy.style.animationDuration = `${10 + Math.random() * 20}s`;
-                candy.style.fontSize = `${20 + Math.random() * 30}px`;
-                candyContainer.appendChild(candy);
-            }
-            
-            // Login form handling
             document.getElementById('loginForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
                 const formData = new FormData(this);
-                const button = this.querySelector('.candy-button');
+                const button = this.querySelector('.terminal-button');
                 const originalText = button.innerHTML;
                 
-                // Loading state
-                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PREPARING CANDIES...';
+                // Terminal boot sequence animation
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> BOOTING...';
                 button.disabled = true;
                 
-                // Add candy animation
-                for (let i = 0; i < 10; i++) {
-                    const candy = document.createElement('div');
-                    candy.className = 'candy';
-                    candy.textContent = candyEmojis[Math.floor(Math.random() * candyEmojis.length)];
-                    candy.style.left = `${Math.random() * 100}%`;
-                    candy.style.top = '100%';
-                    candy.style.fontSize = '20px';
-                    candy.style.animation = 'candyFall 1s linear forwards';
-                    document.querySelector('.candy-background').appendChild(candy);
-                    setTimeout(() => candy.remove(), 1000);
-                }
+                // Create terminal boot effect
+                const bootSequence = document.querySelector('.boot-sequence');
+                const bootLines = [
+                    '> AUTHENTICATING USER...',
+                    '> VERIFYING ACCESS CREDENTIALS...',
+                    '> LOADING OSINT DATABASE...',
+                    '> INITIALIZING HARIBO MODULES...'
+                ];
                 
-                // Add CSS for candy fall
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes candyFall {
-                        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-                        100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+                let lineIndex = 0;
+                const bootInterval = setInterval(() => {
+                    if (lineIndex < bootLines.length) {
+                        const bootLine = document.createElement('div');
+                        bootLine.className = 'boot-line';
+                        bootLine.textContent = bootLines[lineIndex];
+                        bootSequence.appendChild(bootLine);
+                        lineIndex++;
                     }
-                `;
-                document.head.appendChild(style);
+                }, 500);
                 
                 try {
                     const response = await fetch('/login', {
@@ -1151,42 +1086,36 @@ def login():
                     
                     const data = await response.json();
                     
+                    clearInterval(bootInterval);
+                    
                     if (data.success) {
-                        // Success - candy celebration
-                        button.innerHTML = '<i class="fas fa-check"></i> ACCESS GRANTED!';
-                        button.style.background = '{{ gradients.success }}';
+                        // Success - add final boot line
+                        const successLine = document.createElement('div');
+                        successLine.className = 'boot-line';
+                        successLine.style.color = 'var(--haribo-green)';
+                        successLine.innerHTML = '> ACCESS GRANTED <span class="haribo-emoji">🎉</span>';
+                        bootSequence.appendChild(successLine);
                         
-                        // Candy explosion
-                        for (let i = 0; i < 20; i++) {
+                        button.innerHTML = '<i class="fas fa-check"></i> ENTER TERMINAL';
+                        button.style.background = 'var(--gradient-haribo)';
+                        
+                        // Haribo animation
+                        const emojis = ['🍬', '🍭', '🍫', '🧁', '🍩', '🍪'];
+                        for (let i = 0; i < 10; i++) {
                             setTimeout(() => {
-                                const candy = document.createElement('div');
-                                candy.className = 'candy';
-                                candy.textContent = candyEmojis[Math.floor(Math.random() * candyEmojis.length)];
-                                candy.style.left = '50%';
-                                candy.style.top = '50%';
-                                candy.style.fontSize = '30px';
-                                candy.style.animation = `candyExplode 1s ease-out forwards`;
-                                candy.style.zIndex = '1000';
-                                document.querySelector('.candy-background').appendChild(candy);
-                                setTimeout(() => candy.remove(), 1000);
-                            }, i * 50);
+                                const emoji = document.createElement('span');
+                                emoji.className = 'haribo-emoji';
+                                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                                emoji.style.position = 'fixed';
+                                emoji.style.left = `${Math.random() * 100}%`;
+                                emoji.style.top = `${Math.random() * 100}%`;
+                                emoji.style.fontSize = '24px';
+                                emoji.style.animation = 'hariboGlow 1s ease-out forwards';
+                                emoji.style.zIndex = '1000';
+                                document.body.appendChild(emoji);
+                                setTimeout(() => emoji.remove(), 1000);
+                            }, i * 100);
                         }
-                        
-                        // Add CSS for candy explosion
-                        const explodeStyle = document.createElement('style');
-                        explodeStyle.textContent = `
-                            @keyframes candyExplode {
-                                0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-                                100% { 
-                                    transform: translate(
-                                        calc(-50% + ${Math.random() * 200 - 100}px),
-                                        calc(-50% + ${Math.random() * 200 - 100}px)
-                                    ) scale(1);
-                                    opacity: 0;
-                                }
-                            }
-                        `;
-                        document.head.appendChild(explodeStyle);
                         
                         setTimeout(() => {
                             window.location.href = data.redirect;
@@ -1196,37 +1125,37 @@ def login():
                         button.innerHTML = originalText;
                         button.disabled = false;
                         
-                        // Show error
-                        const errorDiv = document.createElement('div');
-                        errorDiv.className = 'error-candy';
-                        errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Invalid candy key! Try again.';
+                        const errorLine = document.createElement('div');
+                        errorLine.className = 'boot-line';
+                        errorLine.style.color = 'var(--haribo-red)';
+                        errorLine.innerHTML = '> AUTHENTICATION FAILED <span class="haribo-emoji">⚠️</span>';
+                        bootSequence.appendChild(errorLine);
                         
-                        const existingError = document.querySelector('.error-candy');
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'error-box';
+                        errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> INVALID ACCESS KEY';
+                        
+                        const existingError = document.querySelector('.error-box');
                         if (existingError) {
                             existingError.remove();
                         }
                         
                         this.appendChild(errorDiv);
-                        
-                        // Shake animation
-                        this.style.animation = 'shake 0.5s';
-                        setTimeout(() => {
-                            this.style.animation = '';
-                        }, 500);
                     }
                 } catch (error) {
+                    clearInterval(bootInterval);
                     button.innerHTML = originalText;
                     button.disabled = false;
-                    alert('Network error. Please try again.');
+                    alert('NETWORK ERROR - PLEASE TRY AGAIN');
                 }
             });
         </script>
     </body>
     </html>
-    ''', error=error, colors=CandyStyle.COLORS, gradients=CandyStyle.GRADIENTS)
+    ''', error=error, colors=DarkHariboStyle.COLORS, gradients=DarkHariboStyle.GRADIENTS)
 
-@app.route('/candy_shop', methods=['GET', 'POST'])
-def candy_shop():
+@app.route('/terminal', methods=['GET', 'POST'])
+def terminal():
     if not session.get('authenticated'):
         return redirect('/login')
     
@@ -1271,12 +1200,12 @@ def candy_shop():
                 
                 result = {
                     'status': 'error',
-                    'message': 'User ID not found in candy database',
+                    'message': 'User ID not found in database',
                     'similar': similar[:5]
                 }
     
-    colors = CandyStyle.COLORS
-    gradients = CandyStyle.GRADIENTS
+    colors = DarkHariboStyle.COLORS
+    gradients = DarkHariboStyle.GRADIENTS
     total_users = len(users_data)
     
     # Örnek ID'ler
@@ -1288,29 +1217,28 @@ def candy_shop():
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>HARIBO SWEET OSINT | CANDY SHOP</title>
+        <title>DARK HARIBO OSINT | TERMINAL</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
         <style>
             :root {
-                --candy-red: {{ colors.red }};
-                --candy-orange: {{ colors.orange }};
-                --candy-yellow: {{ colors.yellow }};
-                --candy-green: {{ colors.green }};
-                --candy-blue: {{ colors.blue }};
-                --candy-purple: {{ colors.purple }};
-                --candy-pink: {{ colors.pink }};
-                --candy-cyan: {{ colors.cyan }};
-                --candy-gold: {{ colors.gold }};
-                --bg-light: {{ colors.light }};
-                --bg-dark: {{ colors.dark }};
-                --text-dark: #5A2D81;
-                --gradient-rainbow: {{ gradients.rainbow }};
-                --gradient-candy: {{ gradients.candy }};
-                --gradient-sweet: {{ gradients.sweet }};
-                --gradient-gummy: {{ gradients.gummy }};
-                --gradient-golden: {{ gradients.golden }};
-                --gradient-berry: {{ gradients.berry }};
+                --terminal-black: {{ colors.terminal_black }};
+                --terminal-dark: {{ colors.terminal_dark }};
+                --terminal-gray: {{ colors.terminal_gray }};
+                --terminal-light-gray: {{ colors.terminal_light_gray }};
+                --haribo-green: {{ colors.haribo_green }};
+                --haribo-yellow: {{ colors.haribo_yellow }};
+                --haribo-red: {{ colors.haribo_red }};
+                --haribo-orange: {{ colors.haribo_orange }};
+                --terminal-green: {{ colors.terminal_green }};
+                --terminal-cyan: {{ colors.terminal_cyan }};
+                --terminal-blue: {{ colors.terminal_blue }};
+                --terminal-purple: {{ colors.terminal_purple }};
+                --gradient-dark: {{ gradients.terminal_dark }};
+                --gradient-glow: {{ gradients.terminal_glow }};
+                --gradient-haribo: {{ gradients.haribo_green }};
+                --gradient-gold: {{ gradients.haribo_gold }};
+                --gradient-rainbow: {{ gradients.haribo_rainbow }};
             }
             
             * {
@@ -1320,105 +1248,108 @@ def candy_shop():
             }
             
             body {
-                font-family: 'Poppins', sans-serif;
-                background: var(--gradient-sweet);
-                color: var(--text-dark);
+                font-family: 'JetBrains Mono', monospace;
+                background: var(--terminal-black);
+                color: var(--terminal-green);
                 min-height: 100vh;
                 overflow-x: hidden;
             }
             
-            .candy-wrapper {
+            .matrix-grid {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: 
+                    linear-gradient(rgba(0, 204, 102, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0, 204, 102, 0.03) 1px, transparent 1px);
+                background-size: 20px 20px;
+                z-index: -2;
+                opacity: 0.3;
+            }
+            
+            .terminal-wrapper {
                 display: flex;
                 flex-direction: column;
                 min-height: 100vh;
             }
             
-            /* Candy Shop Header */
-            .candy-shop-header {
-                background: rgba(255, 255, 255, 0.95);
-                border-bottom: 5px dotted var(--candy-pink);
-                padding: 20px 40px;
-                box-shadow: 0 10px 30px rgba(255, 107, 139, 0.2);
-                position: sticky;
-                top: 0;
-                z-index: 100;
-            }
-            
-            .shop-title-bar {
+            /* Terminal Header */
+            .terminal-header {
+                background: rgba(10, 10, 10, 0.95);
+                border-bottom: 2px solid var(--haribo-green);
+                padding: 15px 30px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin-bottom: 20px;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                backdrop-filter: blur(10px);
             }
             
-            .candy-logo {
+            .terminal-logo {
                 display: flex;
                 align-items: center;
                 gap: 15px;
             }
             
             .logo-icon {
-                font-size: 2.5em;
-                color: var(--candy-red);
-                animation: candyBounce 2s infinite;
+                font-size: 2em;
+                color: var(--haribo-green);
+                animation: terminalPulse 2s infinite;
             }
             
-            @keyframes candyBounce {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-10px); }
+            @keyframes terminalPulse {
+                0%, 100% { 
+                    text-shadow: 0 0 10px var(--haribo-green), 
+                                 0 0 20px var(--haribo-green);
+                }
+                50% { 
+                    text-shadow: 0 0 20px var(--haribo-green), 
+                                 0 0 40px var(--haribo-green);
+                }
             }
             
             .logo-text {
-                font-family: 'Nunito', sans-serif;
-                font-size: 2.2em;
-                font-weight: 900;
-                background: var(--gradient-rainbow);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+                font-size: 1.8em;
+                font-weight: 700;
+                color: var(--haribo-green);
+                letter-spacing: 2px;
             }
             
-            .shop-controls {
-                display: flex;
-                align-items: center;
-                gap: 20px;
-            }
-            
-            .candy-stats {
+            .terminal-stats {
                 display: flex;
                 gap: 20px;
             }
             
-            .stat-candy {
-                background: rgba(255, 255, 255, 0.9);
-                border: 3px solid var(--candy-blue);
-                border-radius: 20px;
-                padding: 15px 25px;
+            .stat-terminal {
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid var(--terminal-blue);
+                padding: 10px 20px;
                 text-align: center;
-                min-width: 150px;
-                box-shadow: 0 5px 15px rgba(108, 166, 255, 0.2);
+                min-width: 120px;
             }
             
             .stat-value {
-                font-size: 1.8em;
-                font-weight: 800;
-                color: var(--candy-red);
+                font-size: 1.4em;
+                font-weight: 700;
+                color: var(--haribo-yellow);
                 margin-bottom: 5px;
             }
             
             .stat-label {
-                font-size: 0.9em;
-                color: var(--text-dark);
-                font-weight: 600;
+                font-size: 0.8em;
+                color: var(--terminal-cyan);
+                letter-spacing: 1px;
             }
             
-            .logout-candy {
-                background: var(--gradient-berry);
-                color: white;
-                border: none;
-                border-radius: 50px;
-                padding: 12px 25px;
+            .logout-terminal {
+                background: rgba(255, 51, 102, 0.2);
+                border: 1px solid var(--haribo-red);
+                color: var(--haribo-red);
+                padding: 10px 20px;
                 font-weight: 700;
                 cursor: pointer;
                 display: flex;
@@ -1426,106 +1357,102 @@ def candy_shop():
                 gap: 10px;
                 transition: all 0.3s ease;
                 text-decoration: none;
+                letter-spacing: 1px;
             }
             
-            .logout-candy:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 10px 20px rgba(255, 51, 102, 0.3);
+            .logout-terminal:hover {
+                background: rgba(255, 51, 102, 0.4);
+                border-color: var(--haribo-orange);
+                transform: translateY(-2px);
             }
             
             /* Main Content */
-            .candy-factory {
+            .terminal-main {
                 flex: 1;
-                padding: 40px;
+                padding: 30px;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                gap: 40px;
+                gap: 30px;
                 max-width: 1600px;
                 margin: 0 auto;
                 width: 100%;
             }
             
             @media (max-width: 1200px) {
-                .candy-factory {
+                .terminal-main {
                     grid-template-columns: 1fr;
                 }
             }
             
-            /* Left Panel - Candy Machine */
-            .candy-machine-panel {
-                background: rgba(255, 255, 255, 0.95);
-                border: 5px solid var(--candy-purple);
-                border-radius: 30px;
-                padding: 30px;
-                box-shadow: 
-                    0 20px 40px rgba(200, 162, 200, 0.3),
-                    inset 0 0 0 10px rgba(255, 255, 255, 0.5);
+            /* Left Panel - Terminal Interface */
+            .terminal-interface {
+                background: rgba(0, 0, 0, 0.8);
+                border: 2px solid var(--haribo-green);
+                padding: 25px;
                 position: relative;
-                overflow: hidden;
+                box-shadow: 0 0 30px rgba(0, 204, 102, 0.3);
             }
             
-            .candy-machine-panel::before {
+            .terminal-interface::before {
                 content: '';
                 position: absolute;
                 top: 0;
                 left: 0;
                 right: 0;
-                height: 10px;
+                height: 2px;
                 background: var(--gradient-rainbow);
             }
             
-            .panel-title {
-                font-family: 'Nunito', sans-serif;
-                font-size: 1.8em;
-                font-weight: 800;
-                margin-bottom: 25px;
-                color: var(--text-dark);
+            .interface-title {
+                font-size: 1.4em;
+                font-weight: 700;
+                margin-bottom: 20px;
+                color: var(--haribo-yellow);
                 display: flex;
                 align-items: center;
-                gap: 15px;
+                gap: 10px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid rgba(0, 204, 102, 0.3);
             }
             
-            .candy-search-form {
+            .terminal-form {
                 display: flex;
                 flex-direction: column;
-                gap: 25px;
+                gap: 20px;
             }
             
-            .candy-input-jar {
+            .terminal-input-group {
                 position: relative;
             }
             
-            .candy-input-large {
-                background: rgba(255, 255, 255, 0.9);
-                border: 4px solid var(--candy-orange);
-                border-radius: 20px;
-                color: var(--text-dark);
-                font-family: 'Poppins', sans-serif;
-                padding: 20px 25px;
+            .terminal-input-large {
+                background: rgba(0, 0, 0, 0.9);
+                border: 2px solid var(--terminal-cyan);
+                color: var(--terminal-green);
+                font-family: 'Ubuntu Mono', monospace;
+                padding: 18px 20px;
                 width: 100%;
-                font-size: 18px;
+                font-size: 16px;
+                letter-spacing: 1px;
                 transition: all 0.3s ease;
-                box-shadow: 0 10px 20px rgba(255, 153, 102, 0.2);
             }
             
-            .candy-input-large:focus {
+            .terminal-input-large:focus {
                 outline: none;
-                border-color: var(--candy-red);
-                box-shadow: 0 15px 30px rgba(255, 107, 139, 0.3);
-                transform: translateY(-3px);
+                border-color: var(--haribo-green);
+                box-shadow: 0 0 20px rgba(0, 204, 102, 0.5);
             }
             
-            .candy-flavors {
+            .osint-options {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 15px;
                 margin: 20px 0;
             }
             
-            .flavor-option {
-                background: rgba(255, 255, 255, 0.9);
-                border: 3px solid var(--candy-blue);
-                border-radius: 15px;
+            .option-terminal {
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid var(--terminal-purple);
                 padding: 15px;
                 cursor: pointer;
                 transition: all 0.3s ease;
@@ -1536,133 +1463,117 @@ def candy_shop():
                 gap: 10px;
             }
             
-            .flavor-option:hover {
-                transform: translateY(-5px);
-                border-color: var(--candy-red);
-                box-shadow: 0 10px 20px rgba(255, 107, 139, 0.2);
+            .option-terminal:hover {
+                border-color: var(--haribo-green);
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 204, 102, 0.3);
             }
             
-            .flavor-option.selected {
-                background: var(--gradient-candy);
-                border-color: var(--candy-red);
-                color: white;
+            .option-terminal.selected {
+                background: rgba(0, 204, 102, 0.2);
+                border-color: var(--haribo-green);
+                box-shadow: 0 0 20px rgba(0, 204, 102, 0.5);
             }
             
-            .flavor-option input[type="radio"] {
+            .option-terminal input[type="radio"] {
                 display: none;
             }
             
-            .flavor-icon {
+            .option-icon {
                 font-size: 1.5em;
+                color: var(--haribo-yellow);
             }
             
-            .flavor-text {
+            .option-text {
                 font-weight: 600;
                 font-size: 0.9em;
+                color: var(--terminal-cyan);
             }
             
-            .candy-button-big {
-                background: var(--gradient-gummy);
-                border: none;
-                border-radius: 20px;
-                color: white;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 900;
-                padding: 25px;
-                font-size: 20px;
+            .terminal-execute {
+                background: var(--gradient-haribo);
+                border: 2px solid var(--haribo-green);
+                color: #000;
+                font-weight: 700;
+                padding: 20px;
+                font-size: 18px;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 15px;
-                text-transform: uppercase;
                 letter-spacing: 2px;
-                box-shadow: 0 15px 30px rgba(204, 102, 255, 0.3);
-                position: relative;
-                overflow: hidden;
+                text-transform: uppercase;
             }
             
-            .candy-button-big:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 20px 40px rgba(204, 102, 255, 0.4);
+            .terminal-execute:hover {
+                background: var(--gradient-gold);
+                border-color: var(--haribo-yellow);
+                box-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
+                transform: translateY(-3px);
             }
             
-            .candy-button-big:active {
-                transform: translateY(0);
-            }
-            
-            .sample-candies {
-                margin-top: 40px;
-                padding-top: 25px;
-                border-top: 3px dotted var(--candy-green);
+            .sample-database {
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(0, 204, 102, 0.3);
             }
             
             .sample-title {
-                color: var(--text-dark);
-                margin-bottom: 20px;
-                font-size: 1.2em;
+                color: var(--haribo-yellow);
+                margin-bottom: 15px;
+                font-size: 1.1em;
                 font-weight: 700;
                 display: flex;
                 align-items: center;
                 gap: 10px;
             }
             
-            .candy-jar {
+            .database-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
                 gap: 10px;
-                background: rgba(255, 230, 236, 0.7);
-                border-radius: 15px;
-                padding: 20px;
-                border: 3px solid var(--candy-yellow);
             }
             
-            .candy-sample {
-                background: white;
-                border: 2px solid var(--candy-cyan);
-                border-radius: 10px;
+            .database-id {
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid var(--terminal-blue);
                 padding: 10px;
-                text-align: center;
+                font-size: 0.8em;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                font-size: 0.9em;
-                font-weight: 500;
+                text-align: center;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                color: var(--terminal-cyan);
             }
             
-            .candy-sample:hover {
-                background: var(--gradient-candy);
-                color: white;
-                transform: translateY(-3px) scale(1.05);
-                border-color: var(--candy-red);
-                box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+            .database-id:hover {
+                background: rgba(0, 204, 102, 0.2);
+                border-color: var(--haribo-green);
+                transform: translateY(-2px);
+                color: var(--haribo-green);
             }
             
             /* Right Panel - Results */
-            .candy-results-panel {
-                background: rgba(255, 255, 255, 0.95);
-                border: 5px solid var(--candy-green);
-                border-radius: 30px;
-                padding: 30px;
-                box-shadow: 
-                    0 20px 40px rgba(158, 228, 147, 0.3),
-                    inset 0 0 0 10px rgba(255, 255, 255, 0.5);
-                position: relative;
-                overflow: hidden;
+            .terminal-results {
+                background: rgba(0, 0, 0, 0.8);
+                border: 2px solid var(--haribo-yellow);
+                padding: 25px;
                 display: flex;
                 flex-direction: column;
+                box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
             }
             
-            .candy-results-panel::before {
+            .terminal-results::before {
                 content: '';
                 position: absolute;
                 top: 0;
                 left: 0;
                 right: 0;
-                height: 10px;
+                height: 2px;
                 background: var(--gradient-rainbow);
             }
             
@@ -1670,20 +1581,18 @@ def candy_shop():
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin-bottom: 25px;
-                padding-bottom: 20px;
-                border-bottom: 3px dotted var(--candy-green);
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid rgba(255, 204, 0, 0.3);
             }
             
             .search-time {
-                color: var(--text-dark);
+                color: var(--haribo-yellow);
                 font-weight: 600;
+                font-size: 0.9em;
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                background: rgba(158, 228, 147, 0.2);
-                padding: 10px 20px;
-                border-radius: 50px;
             }
             
             .results-display {
@@ -1693,190 +1602,181 @@ def candy_shop():
                 padding-right: 10px;
             }
             
-            /* Scrollbar Styling */
+            /* Scrollbar */
             .results-display::-webkit-scrollbar {
-                width: 8px;
+                width: 6px;
             }
             
             .results-display::-webkit-scrollbar-track {
-                background: rgba(255, 182, 193, 0.2);
-                border-radius: 10px;
+                background: rgba(0, 0, 0, 0.3);
             }
             
             .results-display::-webkit-scrollbar-thumb {
-                background: var(--gradient-gummy);
-                border-radius: 10px;
+                background: var(--haribo-green);
             }
             
-            .welcome-candy {
+            .welcome-terminal {
                 text-align: center;
-                padding: 60px 20px;
-                color: var(--text-dark);
+                padding: 40px 20px;
+                color: var(--terminal-cyan);
             }
             
             .welcome-icon {
-                font-size: 5em;
-                color: var(--candy-red);
+                font-size: 4em;
+                color: var(--haribo-green);
                 margin-bottom: 20px;
-                opacity: 0.8;
+                opacity: 0.7;
             }
             
             /* Result Cards */
-            .candy-result {
-                background: white;
-                border: 4px solid var(--candy-orange);
-                border-radius: 25px;
-                padding: 25px;
-                margin-bottom: 25px;
-                animation: candySlide 0.5s ease;
-                box-shadow: 0 10px 25px rgba(255, 153, 102, 0.2);
+            .result-terminal {
+                background: rgba(0, 0, 0, 0.9);
+                border: 2px solid var(--haribo-green);
+                padding: 20px;
+                margin-bottom: 20px;
+                animation: terminalSlide 0.5s ease;
             }
             
-            @keyframes candySlide {
-                from { opacity: 0; transform: translateY(30px); }
+            @keyframes terminalSlide {
+                from { opacity: 0; transform: translateY(20px); }
                 to { opacity: 1; transform: translateY(0); }
             }
             
-            .result-header {
+            .result-header-terminal {
                 display: flex;
                 align-items: center;
                 gap: 15px;
                 margin-bottom: 20px;
                 padding-bottom: 15px;
-                border-bottom: 3px dotted var(--candy-orange);
+                border-bottom: 1px solid rgba(0, 204, 102, 0.3);
             }
             
-            .result-icon {
+            .result-icon-terminal {
                 font-size: 2em;
-                color: var(--candy-green);
+                color: var(--haribo-green);
             }
             
-            .result-title {
-                font-family: 'Nunito', sans-serif;
-                font-size: 1.5em;
-                font-weight: 800;
-                color: var(--text-dark);
+            .result-title-terminal {
+                font-size: 1.3em;
+                font-weight: 700;
+                color: var(--haribo-yellow);
             }
             
-            .candy-grid {
+            .data-grid {
                 display: grid;
                 gap: 15px;
                 margin-bottom: 20px;
             }
             
-            .candy-row {
+            .data-row {
                 display: flex;
                 align-items: center;
-                padding: 15px;
-                background: rgba(255, 230, 236, 0.5);
-                border-radius: 15px;
-                border-left: 5px solid var(--candy-red);
+                padding: 12px 15px;
+                background: rgba(0, 0, 0, 0.5);
+                border-left: 3px solid var(--haribo-green);
             }
             
-            .row-label {
-                min-width: 150px;
-                color: var(--candy-blue);
-                font-weight: 700;
-                font-size: 1em;
-            }
-            
-            .row-value {
-                flex: 1;
-                word-break: break-all;
-                font-family: 'Courier New', monospace;
-                font-weight: 500;
-            }
-            
-            /* OSINT Sections */
-            .osint-candy {
-                margin-top: 30px;
-                padding-top: 25px;
-                border-top: 3px dotted var(--candy-purple);
-            }
-            
-            .osint-title {
-                color: var(--candy-purple);
-                font-size: 1.3em;
-                font-weight: 800;
-                margin-bottom: 20px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            .candy-info-box {
-                background: white;
-                border: 3px solid var(--candy-cyan);
-                border-radius: 20px;
-                padding: 20px;
-                margin-bottom: 15px;
-                box-shadow: 0 8px 20px rgba(118, 230, 255, 0.2);
-            }
-            
-            .info-title {
-                color: var(--candy-cyan);
-                font-weight: 700;
-                margin-bottom: 15px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            .info-grid {
-                display: grid;
-                gap: 10px;
-            }
-            
-            .info-row {
-                display: flex;
-                justify-content: space-between;
-                padding: 8px 0;
-                border-bottom: 1px dotted rgba(200, 162, 200, 0.3);
-            }
-            
-            .info-key {
-                color: var(--text-dark);
+            .row-label-terminal {
+                min-width: 120px;
+                color: var(--terminal-cyan);
                 font-weight: 600;
                 font-size: 0.95em;
             }
             
-            .info-value {
-                color: var(--candy-red);
+            .row-value-terminal {
+                flex: 1;
+                word-break: break-all;
+                font-family: 'Ubuntu Mono', monospace;
+                color: var(--terminal-green);
+                font-size: 0.95em;
+            }
+            
+            /* OSINT Sections */
+            .osint-section-terminal {
+                margin-top: 25px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 204, 0, 0.3);
+            }
+            
+            .osint-title-terminal {
+                color: var(--haribo-yellow);
+                font-size: 1.1em;
                 font-weight: 700;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .osint-card {
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid var(--terminal-purple);
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .osint-card-title {
+                color: var(--terminal-cyan);
+                font-weight: 700;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .osint-data {
+                display: grid;
+                gap: 10px;
+            }
+            
+            .osint-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 0;
+                border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+            }
+            
+            .osint-key {
+                color: var(--terminal-cyan);
+                font-size: 0.9em;
+            }
+            
+            .osint-val {
+                color: var(--haribo-green);
+                font-size: 0.9em;
                 text-align: right;
                 max-width: 60%;
             }
             
-            .threat-high { color: var(--candy-red); }
-            .threat-medium { color: var(--candy-orange); }
-            .threat-low { color: var(--candy-green); }
+            .threat-high { color: var(--haribo-red); }
+            .threat-medium { color: var(--haribo-orange); }
+            .threat-low { color: var(--haribo-green); }
             
-            .service-badge {
-                background: var(--gradient-berry);
-                color: white;
-                padding: 5px 10px;
-                border-radius: 10px;
-                font-size: 0.85em;
+            .service-terminal {
+                background: rgba(255, 51, 102, 0.2);
+                color: var(--haribo-red);
+                padding: 4px 8px;
+                font-size: 0.8em;
+                border: 1px solid var(--haribo-red);
                 display: inline-block;
                 margin: 2px;
             }
             
-            .breach-badge {
-                background: var(--gradient-rainbow);
-                color: white;
-                padding: 5px 10px;
-                border-radius: 10px;
-                font-size: 0.85em;
+            .breach-terminal {
+                background: rgba(0, 204, 102, 0.2);
+                color: var(--haribo-green);
+                padding: 4px 8px;
+                font-size: 0.8em;
+                border: 1px solid var(--haribo-green);
                 display: inline-block;
                 margin: 2px;
-                font-weight: 700;
             }
             
             /* Footer */
-            .candy-footer {
-                background: rgba(255, 255, 255, 0.95);
-                border-top: 5px dotted var(--candy-yellow);
-                padding: 30px 40px;
+            .terminal-footer {
+                background: rgba(10, 10, 10, 0.95);
+                border-top: 2px solid var(--haribo-green);
+                padding: 20px 30px;
                 text-align: center;
             }
             
@@ -1892,75 +1792,65 @@ def candy_shop():
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 15px;
+                gap: 10px;
             }
             
             .footer-icon {
-                font-size: 2em;
-                color: var(--candy-red);
+                font-size: 1.5em;
+                color: var(--haribo-green);
             }
             
             .footer-title {
-                color: var(--candy-purple);
-                font-size: 1.1em;
-                font-weight: 800;
+                color: var(--haribo-yellow);
+                font-size: 1em;
+                font-weight: 700;
+                letter-spacing: 1px;
             }
             
             .footer-text {
-                color: var(--text-dark);
-                font-size: 0.9em;
+                color: var(--terminal-cyan);
+                font-size: 0.8em;
                 max-width: 300px;
             }
             
-            /* Floating Candies Background */
-            .candy-bg {
+            /* Haribo Effects */
+            .haribo-floating {
                 position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
                 pointer-events: none;
                 z-index: -1;
-            }
-            
-            .floating-candy {
-                position: absolute;
                 font-size: 20px;
-                animation: floatCandy 20s infinite linear;
-                opacity: 0.3;
+                animation: hariboFloat 20s infinite linear;
+                opacity: 0.1;
             }
             
-            @keyframes floatCandy {
+            @keyframes hariboFloat {
                 0% { transform: translateY(100vh) rotate(0deg); }
                 100% { transform: translateY(-100px) rotate(360deg); }
             }
             
             /* Responsive */
             @media (max-width: 768px) {
-                .candy-shop-header {
+                .terminal-header {
+                    flex-direction: column;
+                    gap: 15px;
                     padding: 15px;
                 }
                 
-                .shop-title-bar {
-                    flex-direction: column;
-                    gap: 15px;
-                }
-                
-                .candy-stats {
+                .terminal-stats {
                     flex-wrap: wrap;
                     justify-content: center;
                 }
                 
-                .candy-factory {
+                .terminal-main {
                     padding: 20px;
                     gap: 20px;
                 }
                 
-                .candy-flavors {
+                .osint-options {
                     grid-template-columns: 1fr;
                 }
                 
-                .candy-jar {
+                .database-grid {
                     grid-template-columns: repeat(2, 1fr);
                 }
                 
@@ -1972,102 +1862,107 @@ def candy_shop():
         </style>
     </head>
     <body>
-        <div class="candy-bg" id="candyBackground"></div>
+        <div class="matrix-grid"></div>
         
-        <div class="candy-wrapper">
-            <!-- Candy Shop Header -->
-            <header class="candy-shop-header">
-                <div class="shop-title-bar">
-                    <div class="candy-logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-candy-cane"></i>
-                        </div>
-                        <div class="logo-text">HARIBO SWEET OSINT</div>
+        <!-- Floating Haribo Emojis -->
+        <div id="hariboFloating"></div>
+        
+        <div class="terminal-wrapper">
+            <!-- Header -->
+            <header class="terminal-header">
+                <div class="terminal-logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-terminal"></i>
                     </div>
-                    
-                    <div class="shop-controls">
-                        <div class="candy-stats">
-                            <div class="stat-candy">
-                                <div class="stat-value" id="liveTime">--:--:--</div>
-                                <div class="stat-label">SWEET TIME</div>
-                            </div>
-                            <div class="stat-candy">
-                                <div class="stat-value">{{ total_users|intcomma }}</div>
-                                <div class="stat-label">CANDY RECORDS</div>
-                            </div>
-                            <div class="stat-candy">
-                                <div class="stat-value" id="candyCache">0</div>
-                                <div class="stat-label">SUGAR CACHE</div>
-                            </div>
-                        </div>
-                        
-                        <a href="/logout" class="logout-candy">
-                            <i class="fas fa-sign-out-alt"></i>
-                            EXIT CANDY SHOP
-                        </a>
+                    <div class="logo-text">DARK HARIBO OSINT</div>
+                </div>
+                
+                <div class="terminal-stats">
+                    <div class="stat-terminal">
+                        <div class="stat-value" id="liveTime">--:--:--</div>
+                        <div class="stat-label">TERMINAL TIME</div>
+                    </div>
+                    <div class="stat-terminal">
+                        <div class="stat-value">{{ total_users|intcomma }}</div>
+                        <div class="stat-label">RECORDS</div>
+                    </div>
+                    <div class="stat-terminal">
+                        <div class="stat-value" id="cacheSize">0 MB</div>
+                        <div class="stat-label">CACHE</div>
                     </div>
                 </div>
+                
+                <a href="/logout" class="logout-terminal">
+                    <i class="fas fa-sign-out-alt"></i>
+                    EXIT TERMINAL
+                </a>
             </header>
             
             <!-- Main Content -->
-            <main class="candy-factory">
-                <!-- Left Panel - Candy Machine -->
-                <div class="candy-machine-panel">
-                    <div class="panel-title">
-                        <i class="fas fa-candy-cane"></i>
-                        SWEET OSINT MACHINE
+            <main class="terminal-main">
+                <!-- Left Panel -->
+                <div class="terminal-interface">
+                    <div class="interface-title">
+                        <i class="fas fa-terminal"></i>
+                        OSINT TERMINAL
                     </div>
                     
-                    <form method="POST" class="candy-search-form">
-                        <div class="candy-input-jar">
+                    <form method="POST" class="terminal-form">
+                        <div class="terminal-input-group">
                             <input type="text" 
                                    name="user_id" 
-                                   class="candy-input-large"
-                                   placeholder="Enter User ID (e.g., 1379557223096914020)..."
+                                   class="terminal-input-large"
+                                   placeholder="ENTER USER ID"
                                    value="{{ user_id if user_id }}"
                                    required
                                    autofocus>
                         </div>
                         
-                        <div class="panel-title">
-                            <i class="fas fa-ice-cream"></i>
-                            CHOOSE CANDY FLAVOR
+                        <div class="interface-title">
+                            <i class="fas fa-crosshairs"></i>
+                            SELECT OSINT TYPE
                         </div>
                         
-                        <div class="candy-flavors">
-                            <label class="flavor-option {{ 'selected' if osint_type == 'basic' }}">
+                        <div class="osint-options">
+                            <label class="option-terminal {{ 'selected' if osint_type == 'basic' }}">
                                 <input type="radio" name="osint_type" value="basic" {{ 'checked' if osint_type == 'basic' }}>
-                                <div class="flavor-icon">🍬</div>
-                                <div class="flavor-text">Basic Candy</div>
+                                <div class="option-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="option-text">BASIC INFO</div>
                             </label>
                             
-                            <label class="flavor-option {{ 'selected' if osint_type == 'ip_osint' }}">
+                            <label class="option-terminal {{ 'selected' if osint_type == 'ip_osint' }}">
                                 <input type="radio" name="osint_type" value="ip_osint" {{ 'checked' if osint_type == 'ip_osint' }}>
-                                <div class="flavor-icon">🌍</div>
-                                <div class="flavor-text">IP Lollipop</div>
+                                <div class="option-icon">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <div class="option-text">IP OSINT</div>
                             </label>
                             
-                            <label class="flavor-option {{ 'selected' if osint_type == 'email_osint' }}">
+                            <label class="option-terminal {{ 'selected' if osint_type == 'email_osint' }}">
                                 <input type="radio" name="osint_type" value="email_osint" {{ 'checked' if osint_type == 'email_osint' }}>
-                                <div class="flavor-icon">📧</div>
-                                <div class="flavor-text">Email Gummies</div>
+                                <div class="option-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="option-text">EMAIL OSINT</div>
                             </label>
                         </div>
                         
-                        <button type="submit" class="candy-button-big">
-                            <i class="fas fa-cookie-bite"></i>
-                            MAKE CANDY OSINT
+                        <button type="submit" class="terminal-execute">
+                            <i class="fas fa-bolt"></i>
+                            EXECUTE OSINT
                         </button>
                     </form>
                     
-                    <div class="sample-candies">
+                    <div class="sample-database">
                         <div class="sample-title">
-                            <i class="fas fa-gift"></i>
-                            SAMPLE CANDY JAR
+                            <i class="fas fa-database"></i>
+                            SAMPLE DATABASE
                         </div>
-                        <div class="candy-jar">
+                        <div class="database-grid">
                             {% for sample_id in sample_ids %}
-                            <div class="candy-sample" onclick="document.querySelector('.candy-input-large').value='{{ sample_id }}'; document.querySelector('.candy-input-large').focus();">
+                            <div class="database-id" onclick="document.querySelector('.terminal-input-large').value='{{ sample_id }}'; document.querySelector('.terminal-input-large').focus();">
                                 {{ sample_id[:10] }}...
                             </div>
                             {% endfor %}
@@ -2075,12 +1970,12 @@ def candy_shop():
                     </div>
                 </div>
                 
-                <!-- Right Panel - Results -->
-                <div class="candy-results-panel">
+                <!-- Right Panel -->
+                <div class="terminal-results">
                     <div class="results-header">
-                        <div class="panel-title">
+                        <div class="interface-title">
                             <i class="fas fa-chart-bar"></i>
-                            CANDY RESULTS
+                            RESULTS
                         </div>
                         {% if search_time %}
                         <div class="search-time">
@@ -2092,85 +1987,83 @@ def candy_shop():
                     
                     <div class="results-display">
                         {% if not result %}
-                        <div class="welcome-candy">
+                        <div class="welcome-terminal">
                             <div class="welcome-icon">
-                                <i class="fas fa-ice-cream"></i>
+                                <i class="fas fa-terminal"></i>
                             </div>
-                            <h3>SWEET OSINT READY!</h3>
-                            <p style="margin: 15px 0; font-size: 1.1em;">
-                                Enter a User ID and select candy flavor to start analysis
-                            </p>
-                            <div style="background: rgba(158, 228, 147, 0.2); padding: 15px; border-radius: 20px; margin-top: 20px;">
+                            <h3>TERMINAL READY</h3>
+                            <p>Enter a User ID and select OSINT type to begin analysis</p>
+                            <div style="margin-top: 20px; padding: 15px; background: rgba(0, 0, 0, 0.5); border: 1px solid var(--terminal-cyan);">
                                 <i class="fas fa-info-circle"></i>
-                                Candy Database: {{ total_users|intcomma }} sweet records loaded
+                                Database: {{ total_users|intcomma }} records loaded
                             </div>
                         </div>
                         
                         {% else %}
                         <!-- Basic Results -->
-                        <div class="candy-result">
-                            <div class="result-header">
-                                <div class="result-icon">
+                        <div class="result-terminal">
+                            <div class="result-header-terminal">
+                                <div class="result-icon-terminal">
                                     {% if result.status == 'success' %}
-                                    <i class="fas fa-candy-cane"></i>
+                                    <i class="fas fa-check-circle"></i>
                                     {% else %}
-                                    <i class="fas fa-cookie-bite"></i>
+                                    <i class="fas fa-times-circle"></i>
                                     {% endif %}
                                 </div>
-                                <div class="result-title">
+                                <div class="result-title-terminal">
                                     {% if result.status == 'success' %}
-                                    CANDY FOUND! 🍭
+                                    RECORD FOUND <span style="color: var(--haribo-green);">✓</span>
                                     {% else %}
-                                    NO CANDY FOUND 🍬
+                                    RECORD NOT FOUND <span style="color: var(--haribo-red);">✗</span>
                                     {% endif %}
                                 </div>
                             </div>
                             
                             {% if result.status == 'success' %}
-                            <div class="candy-grid">
-                                <div class="candy-row">
-                                    <div class="row-label">USER ID:</div>
-                                    <div class="row-value">{{ user_id }}</div>
+                            <div class="data-grid">
+                                <div class="data-row">
+                                    <div class="row-label-terminal">USER ID:</div>
+                                    <div class="row-value-terminal">{{ user_id }}</div>
                                 </div>
-                                <div class="candy-row">
-                                    <div class="row-label">EMAIL:</div>
-                                    <div class="row-value">{{ result.email }}</div>
+                                <div class="data-row">
+                                    <div class="row-label-terminal">EMAIL:</div>
+                                    <div class="row-value-terminal">{{ result.email }}</div>
                                 </div>
-                                <div class="candy-row">
-                                    <div class="row-label">IP ADDRESS:</div>
-                                    <div class="row-value">{{ result.ip }}</div>
+                                <div class="data-row">
+                                    <div class="row-label-terminal">IP ADDRESS:</div>
+                                    <div class="row-value-terminal">{{ result.ip }}</div>
                                 </div>
                                 {% if result.encoded %}
-                                <div class="candy-row">
-                                    <div class="row-label">ENCODED CANDY:</div>
-                                    <div class="row-value" style="font-size: 0.9em; opacity: 0.8; font-family: monospace;">
+                                <div class="data-row">
+                                    <div class="row-label-terminal">ENCODED:</div>
+                                    <div class="row-value-terminal" style="font-size: 0.8em; opacity: 0.8;">
                                         {{ result.encoded[:50] }}...
                                     </div>
                                 </div>
                                 {% endif %}
                             </div>
                             {% else %}
-                            <div class="candy-grid">
-                                <div class="candy-row">
-                                    <div class="row-label">SWEET ALERT:</div>
-                                    <div class="row-value">{{ result.message }}</div>
+                            <div class="data-grid">
+                                <div class="data-row">
+                                    <div class="row-label-terminal">ERROR:</div>
+                                    <div class="row-value-terminal">{{ result.message }}</div>
                                 </div>
-                                <div class="candy-row">
-                                    <div class="row-label">SEARCHED FOR:</div>
-                                    <div class="row-value">{{ user_id }}</div>
+                                <div class="data-row">
+                                    <div class="row-label-terminal">SEARCHED:</div>
+                                    <div class="row-value-terminal">{{ user_id }}</div>
                                 </div>
                             </div>
                             
                             {% if result.similar %}
-                            <div class="osint-candy">
-                                <div class="osint-title">
+                            <div class="osint-section-terminal">
+                                <div class="osint-title-terminal">
                                     <i class="fas fa-random"></i>
-                                    SIMILAR CANDIES FOUND
+                                    SIMILAR IDs
                                 </div>
-                                <div class="candy-jar">
+                                <div class="database-grid">
                                     {% for similar_id in result.similar %}
-                                    <div class="candy-sample" 
-                                         onclick="document.querySelector('.candy-input-large').value='{{ similar_id }}'; document.querySelector('.candy-input-large').focus();">
+                                    <div class="database-id" 
+                                         onclick="document.querySelector('.terminal-input-large').value='{{ similar_id }}'; document.querySelector('.terminal-input-large').focus();">
                                         {{ similar_id }}
                                     </div>
                                     {% endfor %}
@@ -2182,43 +2075,43 @@ def candy_shop():
                         
                         <!-- IP OSINT Results -->
                         {% if ip_osint_result and result.status == 'success' and result.ip != 'N/A' %}
-                        <div class="candy-result">
-                            <div class="result-header">
-                                <div class="result-icon">
+                        <div class="result-terminal">
+                            <div class="result-header-terminal">
+                                <div class="result-icon-terminal">
                                     <i class="fas fa-globe-americas"></i>
                                 </div>
-                                <div class="result-title">
-                                    IP LOLLIPOP ANALYSIS 🍭
+                                <div class="result-title-terminal">
+                                    IP OSINT ANALYSIS
                                 </div>
                             </div>
                             
                             {% if ip_osint_result.geolocation %}
-                            <div class="osint-candy">
-                                <div class="osint-title">
+                            <div class="osint-section-terminal">
+                                <div class="osint-title-terminal">
                                     <i class="fas fa-map-marker-alt"></i>
-                                    GEO-LOLLIPOP
+                                    GEOLOCATION
                                 </div>
-                                <div class="candy-info-box">
-                                    <div class="info-title">
-                                        <i class="fas fa-candy-cane"></i>
-                                        Location Details
+                                <div class="osint-card">
+                                    <div class="osint-card-title">
+                                        <i class="fas fa-location-dot"></i>
+                                        Location Data
                                     </div>
-                                    <div class="info-grid">
-                                        <div class="info-row">
-                                            <span class="info-key">Country:</span>
-                                            <span class="info-value">{{ ip_osint_result.geolocation.country }}</span>
+                                    <div class="osint-data">
+                                        <div class="osint-row">
+                                            <span class="osint-key">Country:</span>
+                                            <span class="osint-val">{{ ip_osint_result.geolocation.country }}</span>
                                         </div>
-                                        <div class="info-row">
-                                            <span class="info-key">City:</span>
-                                            <span class="info-value">{{ ip_osint_result.geolocation.city }}</span>
+                                        <div class="osint-row">
+                                            <span class="osint-key">City:</span>
+                                            <span class="osint-val">{{ ip_osint_result.geolocation.city }}</span>
                                         </div>
-                                        <div class="info-row">
-                                            <span class="info-key">ISP:</span>
-                                            <span class="info-value">{{ ip_osint_result.geolocation.isp }}</span>
+                                        <div class="osint-row">
+                                            <span class="osint-key">ISP:</span>
+                                            <span class="osint-val">{{ ip_osint_result.geolocation.isp }}</span>
                                         </div>
-                                        <div class="info-row">
-                                            <span class="info-key">Coordinates:</span>
-                                            <span class="info-value">{{ ip_osint_result.geolocation.lat }}, {{ ip_osint_result.geolocation.lon }}</span>
+                                        <div class="osint-row">
+                                            <span class="osint-key">Coordinates:</span>
+                                            <span class="osint-val">{{ ip_osint_result.geolocation.lat }}, {{ ip_osint_result.geolocation.lon }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -2226,35 +2119,33 @@ def candy_shop():
                             {% endif %}
                             
                             {% if ip_osint_result.reputation %}
-                            <div class="osint-candy">
-                                <div class="osint-title">
+                            <div class="osint-section-terminal">
+                                <div class="osint-title-terminal">
                                     <i class="fas fa-shield-alt"></i>
-                                    CANDY REPUTATION
+                                    REPUTATION
                                 </div>
-                                <div class="candy-info-box">
-                                    <div class="info-title">
-                                        <i class="fas fa-cookie-bite"></i>
+                                <div class="osint-card">
+                                    <div class="osint-card-title">
+                                        <i class="fas fa-chart-line"></i>
                                         Threat Analysis
                                     </div>
-                                    <div class="info-grid">
-                                        <div class="info-row">
-                                            <span class="info-key">Sweetness Level:</span>
-                                            <span class="info-value threat-{{ ip_osint_result.reputation.threat_level|lower }}">
+                                    <div class="osint-data">
+                                        <div class="osint-row">
+                                            <span class="osint-key">Threat Level:</span>
+                                            <span class="osint-val {{ 'threat-high' if ip_osint_result.reputation.threat_level == 'High' else 'threat-medium' if ip_osint_result.reputation.threat_level == 'Medium' else 'threat-low' }}">
                                                 {{ ip_osint_result.reputation.threat_level }}
                                             </span>
                                         </div>
                                         {% if ip_osint_result.reputation.blacklists %}
-                                        <div class="info-row">
-                                            <span class="info-key">Blacklisted In:</span>
-                                            <span class="info-value">
-                                                {{ ip_osint_result.reputation.blacklists|join(', ') }}
-                                            </span>
+                                        <div class="osint-row">
+                                            <span class="osint-key">Blacklisted:</span>
+                                            <span class="osint-val">{{ ip_osint_result.reputation.blacklists|join(', ') }}</span>
                                         </div>
                                         {% endif %}
                                         {% if ip_osint_result.reputation.proxy %}
-                                        <div class="info-row">
-                                            <span class="info-key">Proxy/VPN:</span>
-                                            <span class="info-value threat-high">SOUR CANDY 🍋</span>
+                                        <div class="osint-row">
+                                            <span class="osint-key">Proxy/VPN:</span>
+                                            <span class="osint-val threat-high">DETECTED</span>
                                         </div>
                                         {% endif %}
                                     </div>
@@ -2263,20 +2154,20 @@ def candy_shop():
                             {% endif %}
                             
                             {% if ip_osint_result.services %}
-                            <div class="osint-candy">
-                                <div class="osint-title">
+                            <div class="osint-section-terminal">
+                                <div class="osint-title-terminal">
                                     <i class="fas fa-plug"></i>
-                                    CANDY PORTS
+                                    OPEN PORTS
                                 </div>
-                                <div class="candy-info-box">
-                                    <div class="info-title">
+                                <div class="osint-card">
+                                    <div class="osint-card-title">
                                         <i class="fas fa-server"></i>
-                                        Open Services
+                                        Services
                                     </div>
-                                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
                                         {% for service in ip_osint_result.services %}
-                                        <span class="service-badge">
-                                            {{ service.port }}: {{ service.service }}
+                                        <span class="service-terminal">
+                                            {{ service.port }}:{{ service.service }}
                                         </span>
                                         {% endfor %}
                                     </div>
@@ -2288,46 +2179,46 @@ def candy_shop():
                         
                         <!-- Email OSINT Results -->
                         {% if email_osint_result and result.status == 'success' and result.email != 'N/A' %}
-                        <div class="candy-result">
-                            <div class="result-header">
-                                <div class="result-icon">
+                        <div class="result-terminal">
+                            <div class="result-header-terminal">
+                                <div class="result-icon-terminal">
                                     <i class="fas fa-envelope"></i>
                                 </div>
-                                <div class="result-title">
-                                    EMAIL GUMMIES ANALYSIS 🍬
+                                <div class="result-title-terminal">
+                                    EMAIL OSINT ANALYSIS
                                 </div>
                             </div>
                             
                             {% if email_osint_result.analysis %}
-                            <div class="osint-candy">
-                                <div class="osint-title">
+                            <div class="osint-section-terminal">
+                                <div class="osint-title-terminal">
                                     <i class="fas fa-user-check"></i>
-                                    GUMMY ANALYSIS
+                                    EMAIL ANALYSIS
                                 </div>
-                                <div class="candy-info-box">
-                                    <div class="info-title">
-                                        <i class="fas fa-candy-cane"></i>
+                                <div class="osint-card">
+                                    <div class="osint-card-title">
+                                        <i class="fas fa-at"></i>
                                         Email Details
                                     </div>
-                                    <div class="info-grid">
-                                        <div class="info-row">
-                                            <span class="info-key">Provider:</span>
-                                            <span class="info-value">{{ email_osint_result.analysis.provider }}</span>
+                                    <div class="osint-data">
+                                        <div class="osint-row">
+                                            <span class="osint-key">Provider:</span>
+                                            <span class="osint-val">{{ email_osint_result.analysis.provider }}</span>
                                         </div>
-                                        <div class="info-row">
-                                            <span class="info-key">Domain:</span>
-                                            <span class="info-value">{{ email_osint_result.analysis.domain }}</span>
+                                        <div class="osint-row">
+                                            <span class="osint-key">Domain:</span>
+                                            <span class="osint-val">{{ email_osint_result.analysis.domain }}</span>
                                         </div>
-                                        <div class="info-row">
-                                            <span class="info-key">Valid Format:</span>
-                                            <span class="info-value {{ 'threat-low' if email_osint_result.analysis.valid_format else 'threat-high' }}">
-                                                {{ 'SWEET ✓' if email_osint_result.analysis.valid_format else 'SOUR ✗' }}
+                                        <div class="osint-row">
+                                            <span class="osint-key">Valid Format:</span>
+                                            <span class="osint-val {{ 'threat-low' if email_osint_result.analysis.valid_format else 'threat-high' }}">
+                                                {{ 'YES' if email_osint_result.analysis.valid_format else 'NO' }}
                                             </span>
                                         </div>
-                                        <div class="info-row">
-                                            <span class="info-key">Disposable:</span>
-                                            <span class="info-value {{ 'threat-high' if email_osint_result.analysis.disposable else 'threat-low' }}">
-                                                {{ 'CHEWY GUMMY' if email_osint_result.analysis.disposable else 'PREMIUM CANDY' }}
+                                        <div class="osint-row">
+                                            <span class="osint-key">Disposable:</span>
+                                            <span class="osint-val {{ 'threat-high' if email_osint_result.analysis.disposable else 'threat-low' }}">
+                                                {{ 'YES' if email_osint_result.analysis.disposable else 'NO' }}
                                             </span>
                                         </div>
                                     </div>
@@ -2336,56 +2227,26 @@ def candy_shop():
                             {% endif %}
                             
                             {% if email_osint_result.analysis.breaches %}
-                            <div class="osint-candy">
-                                <div class="osint-title">
+                            <div class="osint-section-terminal">
+                                <div class="osint-title-terminal">
                                     <i class="fas fa-exclamation-triangle"></i>
-                                    CANDY BREACHES
+                                    BREACHES
                                 </div>
-                                <div class="candy-info-box">
-                                    <div class="info-title">
-                                        <i class="fas fa-cookie-bite"></i>
-                                        Data Breaches Found
+                                <div class="osint-card">
+                                    <div class="osint-card-title">
+                                        <i class="fas fa-database"></i>
+                                        Data Breaches
                                     </div>
-                                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                                    <div style="display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0;">
                                         {% for breach in email_osint_result.analysis.breaches %}
-                                        <span class="breach-badge">
-                                            {{ breach.name }} ({{ breach.date }})
+                                        <span class="breach-terminal">
+                                            {{ breach.name }}
                                         </span>
                                         {% endfor %}
                                     </div>
-                                    <div class="info-row" style="margin-top: 15px; border: none;">
-                                        <span class="info-key">Total Breaches:</span>
-                                        <span class="info-value threat-high">{{ email_osint_result.analysis.breaches|length }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            
-                            {% if email_osint_result.domain_info %}
-                            <div class="osint-candy">
-                                <div class="osint-title">
-                                    <i class="fas fa-dns"></i>
-                                    DNS CANDIES
-                                </div>
-                                <div class="candy-info-box">
-                                    <div class="info-title">
-                                        <i class="fas fa-server"></i>
-                                        Domain Records
-                                    </div>
-                                    <div class="info-grid">
-                                        {% for record_type, records in email_osint_result.domain_info.items() %}
-                                        <div class="info-row">
-                                            <span class="info-key">{{ record_type }}:</span>
-                                            <span class="info-value">
-                                                {% for record in records[:2] %}
-                                                {{ record }}<br>
-                                                {% endfor %}
-                                                {% if records|length > 2 %}
-                                                ... and {{ records|length - 2 }} more
-                                                {% endif %}
-                                            </span>
-                                        </div>
-                                        {% endfor %}
+                                    <div class="osint-row">
+                                        <span class="osint-key">Total Breaches:</span>
+                                        <span class="osint-val threat-high">{{ email_osint_result.analysis.breaches|length }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -2399,49 +2260,49 @@ def candy_shop():
             </main>
             
             <!-- Footer -->
-            <footer class="candy-footer">
+            <footer class="terminal-footer">
                 <div class="footer-grid">
                     <div class="footer-section">
                         <div class="footer-icon">
                             <i class="fas fa-bolt"></i>
                         </div>
-                        <div class="footer-title">SWEET INTELLIGENCE</div>
-                        <div class="footer-text">Real-time candy-flavored OSINT analysis</div>
+                        <div class="footer-title">HARIBO INTELLIGENCE</div>
+                        <div class="footer-text">Dark terminal OSINT analysis</div>
                     </div>
                     
                     <div class="footer-section">
                         <div class="footer-icon">
                             <i class="fab fa-github"></i>
                         </div>
-                        <div class="footer-title">GITHUB CANDY JAR</div>
-                        <div class="footer-text">{{ total_users|intcomma }} sweet records loaded</div>
+                        <div class="footer-title">GITHUB DATASOURCE</div>
+                        <div class="footer-text">{{ total_users|intcomma }} records</div>
                     </div>
                     
                     <div class="footer-section">
                         <div class="footer-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <div class="footer-title">SUGAR SECURE</div>
-                        <div class="footer-text">Encrypted • No API Keys • Sweet & Safe</div>
+                        <div class="footer-title">SECURE TERMINAL</div>
+                        <div class="footer-text">Encrypted • No API Keys</div>
                     </div>
                 </div>
             </footer>
         </div>
         
         <script>
-            // Create floating candies background
-            const candyBg = document.getElementById('candyBackground');
-            const candyEmojis = ['🍭', '🍬', '🍫', '🍡', '🍧', '🍨', '🍦', '🎂', '🧁', '🍰', '🍩', '🍪', '🥨', '🍮', '🍒', '🍓', '🍇', '🍊', '🍋'];
+            // Create floating Haribo emojis
+            const hariboContainer = document.getElementById('hariboFloating');
+            const hariboEmojis = ['🍬', '🍭', '🍫', '🧁', '🍩', '🍪', '🥨', '🍰', '🎂', '🍦'];
             
-            for (let i = 0; i < 50; i++) {
-                const candy = document.createElement('div');
-                candy.className = 'floating-candy';
-                candy.textContent = candyEmojis[Math.floor(Math.random() * candyEmojis.length)];
-                candy.style.left = `${Math.random() * 100}%`;
-                candy.style.fontSize = `${15 + Math.random() * 30}px`;
-                candy.style.animationDelay = `${Math.random() * 20}s`;
-                candy.style.animationDuration = `${15 + Math.random() * 25}s`;
-                candyBg.appendChild(candy);
+            for (let i = 0; i < 30; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'haribo-floating';
+                emoji.textContent = hariboEmojis[Math.floor(Math.random() * hariboEmojis.length)];
+                emoji.style.left = `${Math.random() * 100}%`;
+                emoji.style.fontSize = `${15 + Math.random() * 25}px`;
+                emoji.style.animationDelay = `${Math.random() * 20}s`;
+                emoji.style.animationDuration = `${10 + Math.random() * 20}s`;
+                hariboContainer.appendChild(emoji);
             }
             
             // Live time update
@@ -2459,83 +2320,63 @@ def candy_shop():
             // Update cache size
             function updateCacheSize() {
                 const size = Math.floor(Math.random() * 100) + 50;
-                document.getElementById('candyCache').textContent = size + ' MB';
+                document.getElementById('cacheSize').textContent = size + ' MB';
             }
             
-            // Flavor selection
-            document.querySelectorAll('.flavor-option').forEach(option => {
+            // Option selection
+            document.querySelectorAll('.option-terminal').forEach(option => {
                 option.addEventListener('click', function() {
-                    document.querySelectorAll('.flavor-option').forEach(opt => {
+                    document.querySelectorAll('.option-terminal').forEach(opt => {
                         opt.classList.remove('selected');
                     });
                     this.classList.add('selected');
                     this.querySelector('input[type="radio"]').checked = true;
                     
-                    // Candy click effect
-                    this.style.transform = 'scale(0.95)';
+                    // Terminal click effect
+                    this.style.boxShadow = '0 0 30px var(--haribo-green)';
                     setTimeout(() => {
-                        this.style.transform = '';
+                        this.style.boxShadow = '';
                     }, 300);
                 });
             });
             
-            // Candy sample selection
-            document.querySelectorAll('.candy-sample').forEach(sample => {
-                sample.addEventListener('click', function() {
-                    const input = document.querySelector('.candy-input-large');
+            // Database ID selection
+            document.querySelectorAll('.database-id').forEach(id => {
+                id.addEventListener('click', function() {
+                    const input = document.querySelector('.terminal-input-large');
                     input.value = this.textContent.replace('...', '');
                     input.focus();
                     
-                    // Candy animation
-                    this.style.background = 'var(--gradient-candy)';
-                    this.style.color = 'white';
+                    // Terminal feedback
+                    this.style.background = 'rgba(0, 204, 102, 0.4)';
                     setTimeout(() => {
                         this.style.background = '';
-                        this.style.color = '';
                     }, 500);
                 });
             });
             
-            // Add candy explosion on form submit
-            const form = document.querySelector('.candy-search-form');
-            if (form) {
-                form.addEventListener('submit', function() {
-                    // Create candy explosion
-                    for (let i = 0; i < 15; i++) {
+            // Execute button animation
+            const executeBtn = document.querySelector('.terminal-execute');
+            if (executeBtn) {
+                executeBtn.addEventListener('mouseenter', function() {
+                    // Add haribo emoji explosion on hover
+                    for (let i = 0; i < 5; i++) {
                         setTimeout(() => {
-                            const candy = document.createElement('div');
-                            candy.className = 'floating-candy';
-                            candy.textContent = candyEmojis[Math.floor(Math.random() * candyEmojis.length)];
-                            candy.style.left = '50%';
-                            candy.style.top = '50%';
-                            candy.style.fontSize = '25px';
-                            candy.style.animation = 'candySubmit 1s ease-out forwards';
-                            candy.style.zIndex = '1000';
-                            candyBg.appendChild(candy);
-                            setTimeout(() => candy.remove(), 1000);
-                        }, i * 50);
+                            const emoji = document.createElement('span');
+                            emoji.className = 'haribo-emoji';
+                            emoji.textContent = hariboEmojis[Math.floor(Math.random() * hariboEmojis.length)];
+                            emoji.style.position = 'absolute';
+                            emoji.style.left = '50%';
+                            emoji.style.top = '50%';
+                            emoji.style.fontSize = '20px';
+                            emoji.style.animation = 'hariboGlow 0.5s ease-out forwards';
+                            emoji.style.zIndex = '1000';
+                            document.querySelector('.terminal-interface').appendChild(emoji);
+                            setTimeout(() => emoji.remove(), 500);
+                        }, i * 100);
                     }
                 });
             }
-            
-            // Add CSS for candy submit animation
-            const submitStyle = document.createElement('style');
-            submitStyle.textContent = `
-                @keyframes candySubmit {
-                    0% { 
-                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
-                        opacity: 1;
-                    }
-                    100% { 
-                        transform: translate(
-                            calc(-50% + ${Math.random() * 300 - 150}px),
-                            calc(-50% + ${Math.random() * 300 - 150}px)
-                        ) scale(1) rotate(360deg);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(submitStyle);
             
             // Initialize
             setInterval(updateTime, 1000);
@@ -2543,35 +2384,23 @@ def candy_shop():
             updateTime();
             updateCacheSize();
             
-            // Add candy counter animation
-            let candyCount = 0;
+            // Add pulsing effect to terminal header
             setInterval(() => {
-                candyCount++;
-                if (candyCount > 999) candyCount = 0;
-                
-                // Add a new floating candy every 10 seconds
-                if (candyCount % 10 === 0) {
-                    const candy = document.createElement('div');
-                    candy.className = 'floating-candy';
-                    candy.textContent = candyEmojis[Math.floor(Math.random() * candyEmojis.length)];
-                    candy.style.left = `${Math.random() * 100}%`;
-                    candy.style.fontSize = `${15 + Math.random() * 30}px`;
-                    candy.style.animationDuration = `${15 + Math.random() * 25}s`;
-                    candyBg.appendChild(candy);
-                    
-                    // Remove old candies if too many
-                    if (candyBg.children.length > 100) {
-                        candyBg.removeChild(candyBg.children[0]);
-                    }
+                const logo = document.querySelector('.logo-icon');
+                if (logo) {
+                    logo.style.animation = 'none';
+                    setTimeout(() => {
+                        logo.style.animation = 'terminalPulse 2s infinite';
+                    }, 10);
                 }
-            }, 1000);
+            }, 4000);
         </script>
     </body>
     </html>
     ''', result=result, user_id=user_id, total_users=total_users, 
          sample_ids=sample_ids, search_time=search_time, osint_type=osint_type,
          ip_osint_result=ip_osint_result, email_osint_result=email_osint_result,
-         colors=CandyStyle.COLORS, gradients=CandyStyle.GRADIENTS)
+         colors=DarkHariboStyle.COLORS, gradients=DarkHariboStyle.GRADIENTS)
 
 @app.route('/logout')
 def logout():
@@ -2611,14 +2440,14 @@ if __name__ == '__main__':
     debug = os.environ.get('FLASK_ENV') == 'development'
     
     print(f"\n{'='*80}")
-    print("🍭 HARIBO SWEET OSINT v3.0")
+    print("🍬 DARK HARIBO OSINT v3.0")
     print(f"{'='*80}")
     print(f"🔧 Port: {port}")
     print(f"🔧 Debug: {debug}")
     print(f"👤 GitHub User: {GITHUB_USERNAME}")
     print(f"📦 Repository: {GITHUB_REPO}")
-    print(f"📊 Loaded {len(users_data):,} sweet users")
-    print(f"🛠️  Candy OSINT Modules: IP Lollipop • Email Gummies • DNS Candies • WHOIS Sweets")
+    print(f"📊 Loaded {len(users_data):,} records")
+    print(f"🛠️  OSINT Modules: IP Geolocation • Email Analysis • DNS • WHOIS")
     print(f"{'='*80}\n")
     
     app.run(host='0.0.0.0', port=port, debug=debug)
